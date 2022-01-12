@@ -2,7 +2,7 @@
 <h2 align="center"> 
   
   ## Goal
-Implementation Snake algorithm in python and compare the performance with Grab-cut algorithm provided in OpenCV.
+Implementing Snake algorithm in python and compare the performance with Grab-cut algorithm provided in OpenCV.
  
   ## Introduction
   
