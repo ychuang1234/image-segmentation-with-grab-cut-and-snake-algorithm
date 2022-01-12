@@ -1,8 +1,8 @@
- <h1 align="left">image-segmentation-with-grab-cut-and-snake-algorithm </h1>
+ <h1 align="left">Image segmentation with Grab-cut and Snake algorithm </h1>
 <h2 align="center"> 
   
   ## Goal
- **Compressed the data** and **quantization** techniques could lessen the solving time in 0/1 knapsack problem by up to **94%**, deviating from the optimal solution by **no more than 5%**.  
+Implementation Snake algorithm in python and compare the performance with Grab-cut algorithm provided in OpenCV.
  
   ## Introduction
   
