@@ -31,9 +31,6 @@ class Snake:
     w_edge = 0.5        # The weight to the edge energy.
     w_term = 0.5        # The weight to the term energy.
 
-    #################################
-    # Constructor
-    #################################
     def __init__( self, image = None, closed = True ):
         """
         Object constructor
@@ -66,8 +63,6 @@ class Snake:
         ####################################
         # Generating the starting points   #
         ####################################
-        # If it is a closed snake, my initial guess will be a circle
-        # that covers the maximum of the image
         if self.closed:
             n = self.n_starting_points
             radius = half_width if half_width < half_height else half_height
@@ -108,12 +103,6 @@ class Snake:
 
         return img
     def dist( a, b ):
-        """
-        Calculates the euclidean distance between two points
-        :param a: The first point
-        :param b: The second point
-        :return: The euclidian distance between the two points
-        """
 
         return np.sqrt( np.sum( ( a - b ) ** 2 ) )
     def normalize( kernel ):
@@ -360,42 +349,7 @@ class Snake:
         self.add_missing_points()
 
         return changed
-    def set_alpha( self, x ):
-        """
-        Utility function (used by cvCreateTrackbar) to set the value of alpha.
-        :param x: The new value of alpha (scaled by 100)
-        """
-        self.alpha = x / 100
-    def set_beta( self, x ):
-        """
-        Utility function (used by cvCreateTrackbar) to set the value of beta.
-        :param x: The new value of beta (scaled by 100)
-        """
-        self.beta = x / 100
-    def set_delta( self, x ):
-        """
-        Utility function (used by cvCreateTrackbar) to set the value of delta.
-        :param x: The new value of delta (scaled by 100)
-        """
-        self.delta = x / 100
-    def set_w_line( self, x ):
-        """
-        Utility function (used by cvCreateTrackbar) to set the value of w_line.
-        :param x: The new value of w_line (scaled by 100)
-        """
-        self.w_line = x / 100
-    def set_w_edge( self, x ):
-        """
-        Utility function (used by cvCreateTrackbar) to set the value of w_edge.
-        :param x: The new value of w_edge (scaled by 100)
-        """
-        self.w_edge = x / 100
-    def set_w_term( self, x ):
-        """
-        Utility function (used by cvCreateTrackbar) to set the value of w_term.
-        :param x: The new value of w_term (scaled by 100)
-        """
-        self.w_term = x / 100
+
 def grabcut_algo(src):
 	mask = np.zeros(src.shape[:2],dtype=np.uint8)
 	#print("Size",w,h)
@@ -414,29 +368,12 @@ def grabcut_algo(src):
 	cv2.waitKey(10000)
 	return mask2
 
-def create_snake_window(snake_window_name,controls_window_name,snake):
-	cv2.namedWindow( snake_window_name )
-	cv2.namedWindow( controls_window_name )
-	cv2.createTrackbar( "Alpha", controls_window_name, math.floor( snake.alpha * 100 ), 100, snake.set_alpha )
-	cv2.createTrackbar( "Beta",  controls_window_name, math.floor( snake.beta * 100 ), 100, snake.set_beta )
-	cv2.createTrackbar( "Delta", controls_window_name, math.floor( snake.delta * 100 ), 100, snake.set_delta )
-	cv2.createTrackbar( "W Line", controls_window_name, math.floor( snake.w_line * 100 ), 100, snake.set_w_line )
-	cv2.createTrackbar( "W Edge", controls_window_name, math.floor( snake.w_edge * 100 ), 100, snake.set_w_edge )
-	cv2.createTrackbar( "W Term", controls_window_name, math.floor( snake.w_term * 100 ), 100, snake.set_w_term )
 def snake_algo (src,closed=True):
 	snake = Snake(src)
 	snake_window_name = "Snakes"
-	controls_window_name = "Controls"
-	create_snake_window(snake_window_name,controls_window_name,snake)
 	h,w,ch = src.shape
 	mask = np.zeros(src.shape[:2],dtype=np.uint8)
 	while(True):
-		#object = cv2.bitwise_and(src,src,mask=mask2)
-		#mask2 = cv2.GaussianBlur(mask2,(3,3),0)
-		#cv2.imshow('mask',mask2)
-		#cv2.waitKey(10000)
-		#background = cv2.GaussianBlur(background,(0,0),1)
-		#result = np.zeros((h,w,ch),dtype=np.uint8)
 		snakeImg = snake.visualize()
 		# Shows the image with snake contour
 		cv2.imshow( snake_window_name, snakeImg )
@@ -450,23 +387,6 @@ def snake_algo (src,closed=True):
 	mask2 = cv2.fillPoly(mask,[pts],(255,255,255))
 	cv2.imshow('mask',mask2)
 	cv2.waitKey(5000)
-	'''
-	snake.remove_overlaping_points()
-	x = [i[0] for i in snake.points]
-	y = [i[1] for i in snake.points]
-	unew = np.arange(min(min(x),min(y)), max(max(x),max(y)), 0.5)
-	tck,u = interpolate.splprep([x,y])
-
-	out = interpolate.splev(unew,tck)
-	print(sorted(out[0]))
-	print(sorted(out[1]))
-	
-	plt.figure()
-	plt.plot(x, y, 'x', out[0], out[1])
-	plt.axis([0, src.shape[1], 0, src.shape[0]])
-	plt.title('Spline of parametrically-defined curve')
-	plt.show()
-	'''
 	return mask2
 
 def main(src_path,background_path):
@@ -488,6 +408,8 @@ def main(src_path,background_path):
 			r = (1.0-w1)*r1 + r*w1
 			result[row,col] = (b,g,r)
 	cv2.imshow("result",result)
+	cv2.imwrite('result_snake.jpg',result,[cv2.IMWRITE_JPEG_QUALITY,90])
+	cv2.imwrite('mask_snake.jpg',mask,[cv2.IMWRITE_JPEG_QUALITY,90])
 	k = cv2.waitKey(5000)
 
 	
