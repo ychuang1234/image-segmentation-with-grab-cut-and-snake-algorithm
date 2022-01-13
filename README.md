@@ -8,6 +8,9 @@ Implementing Snake algorithm in python and compare the performance with Grab-cut
   
 **Dynamic programming (DP)** is one of efficient way to solve 0/1 knapsack problem (**maximization problem with constraint**). However, when the selected items and contraint become larger, it **increases computation time** and **takes more memory to store the result of subproblem**. In real case, the weights (cost) distribution of items is **not uniform**. Normally, the distribution is skewed toward the lower half of the possible range of the weights. I utilize this characteristics and make some items with small cost to merge into one new item with bigger cost, resulting in smaller number of items being considered.
 
+ ![](http://latex.codecogs.com/svg.latex?\int_{0}^{1}E_{snake}(v(s))\mathrm{d}s=\int_{0}^{1}(E_{internal}(v(s))+E_{image}(v(s))+E_{con}(v(s)))\mathrm{d}s
+ 
+ ![](http://latex.codecogs.com/svg.latex?E_{internal}=\alpha(s)\leftv_{s}(s)\right^{2}
   
   
   ## Description
