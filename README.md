@@ -40,5 +40,5 @@ Implementing Snake algorithm in python and compare the performance with Grab-cut
 ## Experiment and Result
 This is the procedure in experiment but **not yet adjust the weights** of each designated energy term.
 <p align="center">
- <img src=https://github.com/ychuang1234/image-segmentation-with-grab-cut-and-snake-algorithm/blob/5a57fe4ae9e521f14e831821d398cf6ce723df8e/procedure.JPG " height="80%">
+ <img src="https://github.com/ychuang1234/image-segmentation-with-grab-cut-and-snake-algorithm/blob/5a57fe4ae9e521f14e831821d398cf6ce723df8e/procedure.JPG " height="80%">
  </p>
