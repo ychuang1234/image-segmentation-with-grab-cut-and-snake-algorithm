@@ -32,14 +32,13 @@ Implementing Snake algorithm in python and compare the performance with Grab-cut
  ![](http://latex.codecogs.com/svg.latex?\bar{v(s)_{i}}\longleftarrow{v(s)_{i}-\mathbf{\nabla}E_{snake}v(s)_{i}}=v(s)_{i}-w_{internal}\mathbf{\nabla}E_{internal}v(s)_{i}-w_{external}\mathbf{\nabla}E_{external}v(s)_{i})
 
   ### (4-2) Optimization step (in this project): trust region optimization
- 
+ Search in pre-defined range to find if there is any new position that could lower snake energy and update. 
  <p align="center">
- <img srchttps://github.com/ychuang1234/image-segmentation-with-grab-cut-and-snake-algorithm/blob/5ddcdb5a28b30120e567e35b57c5ed3f371123d4/TRO.JPG" height="80%">
+ <img src="https://github.com/ychuang1234/image-segmentation-with-grab-cut-and-snake-algorithm/blob/5ddcdb5a28b30120e567e35b57c5ed3f371123d4/TRO.JPG" height="80%">
  </p>
 
 ## Experiment and Result
-
-This is the output from .ipynb file with various experiment settings.
+This is the procedure in experiment but **not yet adjust the weights** of each designated energy term.
 <p align="center">
  <img src=https://github.com/ychuang1234/image-segmentation-with-grab-cut-and-snake-algorithm/blob/5a57fe4ae9e521f14e831821d398cf6ce723df8e/procedure.JPG " height="80%">
  </p>
